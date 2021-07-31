@@ -5,31 +5,31 @@ import PropTypes from 'prop-types'; // ES6
 
 export default class Form extends Component {
     state = {
-        name: '',
-        number: ''
+      name: '',
+      number: ''
     }
     onInputChange = (e) => {
-        const { name, value } = e.currentTarget;
-        this.setState({ [name]: value })
+    const { name, value } = e.currentTarget;
+    this.setState({[name]: value})
     }
-    onSubmit = (e) => {
-        e.preventDefault()
-        const contact = {
-            id: shortid.generate(),
-            name: this.state.name,
-            number: this.state.number
-        };
-        this.props.onSubmit(contact)
-        this.reset()
+      onSubmit = (e) => {
+    e.preventDefault()
+    const contact = {
+        id: shortid.generate(),
+        name: this.state.name,
+        number:this.state.number
+    };
+    this.props.onSubmit(contact) 
+    this.reset()
     }
-    reset = () => { this.setState({ name: '', number: '' }) }
+    reset = () => {this.setState({ name: '', number: ''})}
 
     render() {
         return (
             <form className={styles.form} onSubmit={this.onSubmit}>
                 <label>
-                    Name
-                    <input
+                Name
+                <input
                         onChange={this.onInputChange}
                         value={this.state.name}
                         className={styles.inputNameLabel}
@@ -38,7 +38,7 @@ export default class Form extends Component {
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                         title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
                         required
-                    />
+                />
                 </label>
                 <label>
                     Phone
@@ -58,6 +58,6 @@ export default class Form extends Component {
         )
     }
 }
-Form.propTypes = {
+Form.propTypes  = {
     onSubmit: PropTypes.func.isRequired,
 }
